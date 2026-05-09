@@ -2,6 +2,7 @@
   "name": "affluenceai",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Influencer Affiliate Sales & Payment Tracking Platform",
   "workspaces": [
     "client",
