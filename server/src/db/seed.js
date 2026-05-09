@@ -37,7 +37,7 @@ function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-async function seed() {
+export async function seed() {
   console.log('🌱 Seeding database...\n');
   await initializeDb();
   const db = await getDb();
@@ -230,4 +230,6 @@ async function seed() {
   console.log('   Influencer: priya@example.com / password123 (or any influencer email)');
 }
 
-seed().catch(console.error);
+if (process.argv[1] && process.argv[1].endsWith('seed.js')) {
+  seed().catch(console.error);
+}
