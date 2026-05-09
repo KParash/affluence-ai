@@ -6,9 +6,18 @@ import { initializeDb } from '../server/src/db/database.js';
 let dbInitialized = false;
 
 export default async function handler(req, res) {
-  if (!dbInitialized) {
-    await initializeDb();
-    dbInitialized = true;
+  try {
+    if (!dbInitialized) {
+      await initializeDb();
+      dbInitialized = true;
+    }
+    return app(req, res);
+  } catch (error) {
+    console.error('Serverless Initialization Error:', error);
+    return res.status(500).json({ 
+      error: 'Serverless initialization failed', 
+      details: error.message,
+      stack: error.stack 
+    });
   }
-  return app(req, res);
 }
