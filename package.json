@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "Influencer Affiliate Sales & Payment Tracking Platform",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
