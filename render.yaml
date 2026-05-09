@@ -9,9 +9,3 @@ services:
         value: production
       - key: PORT
         value: 3001
-    # We mount a persistent disk so that our SQLite database file
-    # is not wiped out across deployments or restarts.
-    disk:
-      name: sqlite-data
-      mountPath: /opt/render/project/src/server/data
-      sizeGB: 1
