@@ -40,12 +40,17 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(clientDistPath, 'index.html'));
 });
 
-async function start() {
-  await initializeDb();
-  app.listen(PORT, () => {
-    console.log(`\n🚀 AffluenceAI API Server running on http://localhost:${PORT}`);
-    console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
-  });
+// Only start listening if not on Vercel
+if (!process.env.VERCEL) {
+  async function start() {
+    await initializeDb();
+    app.listen(PORT, () => {
+      console.log(`\n🚀 AffluenceAI API Server running on http://localhost:${PORT}`);
+      console.log(`   Health check: http://localhost:${PORT}/api/health\n`);
+    });
+  }
+  start().catch(console.error);
 }
 
-start().catch(console.error);
+// Export for Vercel serverless
+export default app;
